@@ -75,7 +75,7 @@ class CameraPanel(Cyclic):
         full_frame = ttk.LabelFrame(parent, text="Full Frame", labelanchor=tk.N)
         self.make_full_frame_preview_slice(full_frame)
         self.make_image_properties_slice(full_frame)
-        self.make_histogram(full_frame)
+        # self.make_histogram(full_frame)
         full_frame.grid(column=1, row=0, rowspan=2, sticky=tk.NSEW)
 
         roi_frame = ttk.LabelFrame(parent, text="Region of Interest", labelanchor=tk.N)
@@ -771,20 +771,20 @@ class CameraPanel(Cyclic):
 
     def update_all_histograms(self):
         """Update full frame and ROI histograms"""
-        if self.hide_histogram.get():
-            self.histogram.grid_remove()
-        else:
-            self.histogram.grid()
+        # if self.hide_histogram.get():
+        #     self.histogram.grid_remove()
+        # else:
+        #     self.histogram.grid()
 
         box = self.get_roi_box()
         if self.config.camera_frame:
-            self.update_histogram(
-                self.histogram,
-                self.config.camera_frame.img_array,
-                self.config.camera_frame.bits,
-                self.config.image_full_threshold,
-                self.full_threshold_hist.get(),
-            )
+            # self.update_histogram(
+            #     self.histogram,
+            #     self.config.camera_frame.img_array,
+            #     self.config.camera_frame.bits,
+            #     self.config.image_full_threshold,
+            #     self.full_threshold_hist.get(),
+            # )
             self.update_histogram(
                 self.roi_histogram,
                 self.config.camera_frame.img_array[box[1] : box[3], box[0] : box[2]],
@@ -793,13 +793,13 @@ class CameraPanel(Cyclic):
                 self.roi_threshold_hist.get(),
             )
         else:
-            self.update_histogram(
-                self.histogram,
-                np.array(self.config.full_img),
-                8,
-                self.config.image_full_threshold,
-                self.full_threshold_hist.get(),
-            )
+            # self.update_histogram(
+            #     self.histogram,
+            #     np.array(self.config.full_img),
+            #     8,
+            #     self.config.image_full_threshold,
+            #     self.full_threshold_hist.get(),
+            # )
             self.update_histogram(
                 self.roi_histogram,
                 np.array(self.config.full_img.crop(box)),
